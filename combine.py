@@ -4,7 +4,7 @@ import argparse
 import os
 
 
-def combine(filename1: str, filename2: str, output_dir: str) -> None:
+def _combine(filename1: str, filename2: str, output_dir: str) -> None:
     start: int = int(time.time())
 
     print('Start combine')
@@ -62,7 +62,7 @@ def main() -> None:
     if error_message:
         print('\n'.join(error_message))
     else:
-        combine(filename1, filename2, output_dir)
+        _combine(filename1, filename2, output_dir)
 
 
 if __name__ == '__main__':
