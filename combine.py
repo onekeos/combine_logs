@@ -1,7 +1,7 @@
-import ast
 import time
 import argparse
 import os
+import json
 
 
 def _combine(filename1: str, filename2: str, output_dir: str) -> None:
@@ -19,9 +19,9 @@ def _combine(filename1: str, filename2: str, output_dir: str) -> None:
         f2_index: int = 0
 
         while f1_index < len(file_1):
-            f1_value: str = ast.literal_eval(file_1[f1_index])['timestamp']
+            f1_value: str = json.loads(file_1[f1_index])['timestamp']
             while f2_index < len(file_2):
-                f2_value: str = ast.literal_eval(file_2[f2_index])['timestamp']
+                f2_value: str = json.loads(file_2[f2_index])['timestamp']
                 if f1_value <= f2_value:
                     f3.write(file_1[f1_index])
                     break
@@ -38,7 +38,7 @@ def _combine(filename1: str, filename2: str, output_dir: str) -> None:
                 for index in range(f2_index, len(file_2)):
                     f3.write(file_2[index])
 
-    print('Combine ended')
+    print('Combine ended', time.time() - start)
 
 
 def main() -> None:
